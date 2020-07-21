@@ -1,0 +1,37 @@
+
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .form-full-width {
+    width: 100%;
+  }
+
+  agm-map {
+    height: 400px;
+
+  }
+
+  #image{
+    display: none;
+  }
+
+  .image-upoad-container{
+    cursor: pointer;
+  }
+
+  .img-preview-container{
+    background-color: #f7f7f7 ;
+    position: relative;
+    height: 167px;
+    width: 280px;
+ 
+  }
+  .img-preview{
+     background: center center no-repeat;
+     background-size: contain;
+     height: 167px;
+     width: 280px;
+  }

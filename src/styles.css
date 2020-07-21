@@ -1,0 +1,43 @@
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+table thead tr th {
+    color: #f58722;
+}
+
+.priceproduct {
+    color: #f58722
+}
+
+ .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
+    background-color: #f58722 !important;
+}
+
+h1{
+    color: #f58722 !important;
+    font-size: 18px !important;
+}
+
+::ng-deep .mat-icon {
+    cursor: pointer !important;
+}
+
+::ng-deep mat-card-title{
+    color:#299012
+  
+    ;
+  }
+
+  .btn-primary{
+      background-color: #f58722 !important;
+      border-color:#299012 ;
+  }

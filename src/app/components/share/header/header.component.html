@@ -1,0 +1,41 @@
+<!--================ Header Menu Area start =================-->
+<header class="header_area">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container box_1620">
+        <a *ngIf="logo_customer" class="navbar-brand logo_h"><img height="100" src="assets/img/uploads/img-login.png" alt=""></a>
+        <a *ngIf="!logo_customer" class="navbar-brand logo_h"><img height="100" src="assets/img/uploads/img-login-proveedores.png" alt=""></a>
+
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav menu_nav justify-content-center">
+            <li class="nav-item" *ngFor="let menu of customMenues" routerLinkActive="active">
+              <a class="nav-link"  (click)="changeMenu(menu)">{{menu.title}}</a>
+            </li>
+          </ul>
+
+          <button *ngIf="isLogged" placement="bottom" [ngbPopover]="popContent" class="panding-left"
+            ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." color="" mat-mini-fab
+            title="Mi Perfil">
+            <mat-icon>account_box</mat-icon>
+          </button>
+
+
+
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<ng-template #popContent>
+  <a class="nav-link icon-logout" (click)="loggout()"> Cerrar Sesion
+
+
+  </a>
+  <a class="nav-link icon-logout" (click)="editProfile()"> Editar Perfil
+  </a>
+  <a class="nav-link icon-logout" (click)="changePassword()"> Cambiar Contraseña
+  </a>
+  
+</ng-template>
+<!--================Header Menu Area =================-->

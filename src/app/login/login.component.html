@@ -1,0 +1,76 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<!-- <section id="wrapper" class="login-register login-sidebar">
+`
+   ` 
+</section> -->
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<div class="col-md-12 backgound-login">
+    <div class="row">
+        <div class="col-md-6 d-flex justify-content-center container-login">
+            <div class="col-md-6   justify-content-center">
+                <div class="card-body">
+                    <form (submit)="login()" class="form-horizontal form-material">
+                        <a class="img-logo text-center db"><img
+                                src="./assets/img/uploads/img-login.png" height="80" alt="" /></a>
+                        <p class="message-error">{{message}}</p>
+                        <div class="form-group m-t-40">
+                            <div class="col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Usuario</mat-label>
+                                    <input type="email" name="user" [(ngModel)]="formLogin.email" autocomplete="off"
+                                        matInput placeholder="Usuario" value="" required>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Password</mat-label>
+                                    <input type="password" autocomplete="off" name="pass"
+                                        [(ngModel)]="formLogin.password" matInput placeholder="Password" required>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Tipo de Usuario</mat-label>
+                                    <mat-select name="userType" [(ngModel)]="formLogin.userType" required>
+                                        <mat-option [value]="'C'">Cliente</mat-option>
+                                        <mat-option [value]="'E'">Proveedor</mat-option>
+                                    </mat-select>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center m-t-20">
+                            <div class="col-xs-12">
+                                <button type=" submit"
+                                    class="btn btn-login btn-info btn-lg btn-block text-uppercase btn-rounded">INICIAR SESIÓN</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-b-0">
+                            <div class="col-sm-12 text-center">
+                                No tienes cuenta aún? <a (click)="register()" class="text-primary m-l-5"><b class="color-message-create-user">Registrate
+                                        Aquí</b></a>
+                            </div>
+                            <div class="col-sm-12 text-center">
+                              <p class="color-message-create-user" (click)="forgetPassword()">Recuperar Contraseña</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

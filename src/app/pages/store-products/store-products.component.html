@@ -1,0 +1,51 @@
+<mat-card>
+    <mat-card-title>Mis Productos</mat-card-title>
+    <div class="col-md-12 col-sm-12 col-lg-12">
+        <div class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Producto</mat-label>
+                <input type="text" autocomplete="off" name="criteria" [(ngModel)]="criteria" (keydown.enter)="search()"
+                    matInput placeholder="Ingrese Criterio de Busqueda (press Enter)">
+                <mat-icon matSuffix (click)="search()">search</mat-icon>
+
+            </mat-form-field>
+            <button mat-mini-fab color="primary" title="Agregar mas productos" (click)="openModalAddProducts()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let item of paginate.products" class="col-md-3 col-sm-3 col-lg-3 card-clas">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{item.productName}}</mat-card-title>
+                        <mat-card-subtitle>{{item.categories}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content class="text-center">
+
+                        <img mat-card-image height="290"  [src]="item.imageUrl" alt="" />
+
+                        <span><strong>Pre. Unitario : </strong>{{item.price}}</span><br />
+                        <span><strong>Unidad Medida :</strong>{{item.measurementUnit}}</span><br />
+                        <span><strong>Stock : </strong>{{item.stock}}</span><br />
+                    </mat-card-content>
+                    <mat-card-actions class="text-center">
+                        <button mat-raised-button color="primary" (click)="editar(item)"  >Editar</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+
+        </div>
+    </div>
+    <div class="text-center" *ngIf="paginate.totalRows == 0">
+        <h1 style="font-style: italic">No se encontraron productos</h1>
+    </div>
+    <mat-card-actions *ngIf="paginate.numberPages > 1" class="text-center">
+
+        <button *ngFor="let item of paginate.numberPagesList" mat-mini-fab color=""
+            [ngClass]="{'pagine-active': item == paginate.currentPage}" (click)="searchPaginate(item)">
+            {{item + 1 }}
+        </button>
+    </mat-card-actions>
+</mat-card>

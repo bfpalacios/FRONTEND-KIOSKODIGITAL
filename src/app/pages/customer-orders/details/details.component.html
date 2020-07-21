@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Detalle Compra</h2>
+<mat-dialog-content class="mat-typography">
+    <table class="table mat-elevation-z8">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col"></th>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio Unitario</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Sub Total</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of items ; let i = index">
+                <td >{{i + 1}}</td>
+                <td><img [src]="item.productPath" alt="" height="42" width="42"></td>
+                <td>{{item.productname}}</td>
+                <td>s/. {{ item.price }}</td>
+                <td>{{ item.quantity.toFixed(2) }} {{item.measurementUnit}}</td>
+                <td>{{ item.total.toFixed(2) }}</td>
+            </tr>
+        </tbody>
+    </table>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>cerrar</button>
+
+</mat-dialog-actions>

@@ -1,0 +1,179 @@
+.card-clas{
+    padding: 1%;
+  }
+
+  .cantidad-field{
+      width: 30%;
+  }
+
+  .button-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+   
+  }
+
+  .quantity-full-width {
+    width: 15%;
+    text-align: center;
+  }
+
+  .add_shopping_cart{
+      margin-left: 20%;
+  }
+
+  .total{
+    position: absolute;
+    left: 82%;
+  }
+
+  .total > div > a{
+    color: white;
+  }
+
+  .class-filter > a{
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .category-filter {
+    padding-left: 6%;
+  }
+
+  .sub-category-item{
+    margin-left: 10px;
+  }
+
+  .example-form {
+   
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .pagine-active{
+    background-color:#3f51b5 ;
+  }
+  .image-card{
+    height: fit-content;
+    width: auto;
+  }
+
+  ::ng-deep mat-label{
+    color:#299012
+  
+    ;
+  }
+
+  ::ng-deep mat-card-title{
+    color:#299012
+  
+    ;
+  }
+  ::ng-deep mat-card-subtitle{
+    color:#299012
+  
+    ;
+  }
+
+  ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+    color: #f58722;
+  }
+  
+  /* ink bar */
+  
+  ::ng-deep .mat-ink-bar {
+    background-color: var(--primary-color, #f58722) !important;
+    height: 2px;
+    width: 20px;
+  }
+
+  .priceproduct{
+    color:#f58722
+  }
+
+  .btn-color-product{
+    background-color: #f58722;
+  }
+
+  .btn-color-add-product{
+    background-color: #299012;
+  }
+
+  .img-store{
+    width:140px;
+    height:140px;
+    border-radius:150px;
+  }
+
+  .info-store{
+    padding-left: 20px;
+   
+  }
+
+  .owner-store{
+    color: #299012;
+  }
+  .info-store-itmes{
+    color: #858585;
+  }
+  .table-products{
+    padding-top: 20px;
+  }
+
+  .img-table0details{
+    border: solid 2px #e2e2e2;
+    border-radius: 150px;
+    height: 65px;
+    width: 65px;
+}
+
+table thead tr th {
+  color: #f58722;
+}
+  
+
+.container-provedor{
+  border: solid 1px #e2e2e2;
+  
+
+}
+
+.clas-delivery{
+  padding-top: 50px;
+}
+
+.live__scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.live__scroll .row{
+  display:block;
+}
+.live__scroll .live__scroll--box {
+  display: inline-block;
+  float: none;
+  padding: 2px;
+  cursor: pointer;
+  
+}
+
+.name-class{
+  color:  #299012;;
+  font-size: 12px;
+}
+
+.content-search{
+  padding-bottom: 0px !important;
+}
+
+.selected{
+  border: ridge #f58722;
+}
+
+.selected-name-class{
+  color:  #f58722 !important;
+}

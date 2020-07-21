@@ -1,0 +1,101 @@
+<div class="col-md-12">
+
+    <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Lista">
+            <div class="container">
+                <div class="row">
+                    <div *ngFor="let item of stores" class="col-xl-3 col-sm-3 col-lg-4 card-clas">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" height="180" [src]="item.pathphoto" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.name}}</h5>
+                                <span class="card-store"><strong>Nombre : </strong>{{item.name}}</span><br />
+                                <span class="card-store"><strong>Dueño : </strong>{{item.owner}}</span><br />
+                                <span class="card-store"><strong>Reparto : </strong>{{item.delivery}}</span><br />
+                                <span class="card-store"><strong>Teléfono : </strong>{{item.phone}}</span><br />
+                                <span class="card-store"><strong>Dirección : </strong>{{item.address}}</span><br />
+                                <span class="card-store"><strong>Horario Atencion :
+                                    </strong>{{item.operationSchedule[0].range}}</span><br />
+                                <div class="text-right">
+                                    <a (click)="redirect(item)" class="btn color-btn">COMPRAR</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngFor="let item of bodegas" class="col-xl-3 col-sm-3 col-lg-4 card-clas">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" height="180" [src]="item.pathphoto" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.name}}</h5>
+                                <span class="card-store"><strong>Nombre : </strong>{{item.name}}</span><br />
+                                <span class="card-store"><strong>Dueño : </strong>{{item.owner}}</span><br />
+                                <span class="card-store"><strong>Reparto : </strong>{{item.delivery}}</span><br />
+                                <span class="card-store"><strong>Teléfono : </strong>{{item.phone}}</span><br />
+                                <span class="card-store"><strong>Dirección : </strong>{{item.address}}</span><br />
+                                <span class="card-store"><strong>Horario Atencion :
+                                    </strong>{{item.operationSchedule[0].range}}</span><br />
+                                <div class="text-right">
+                                    <a (click)="redirect(item)" class="btn color-btn">COMPRAR</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </mat-tab>
+        <mat-tab label="Mapa">
+            <mat-card>
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                    <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'./assets/img/markers/user.png'">
+                    </agm-marker>
+                    <agm-marker *ngFor="let store of stores" [latitude]="store.latitud" [longitude]="store.longitud"
+                        [iconUrl]="store.pathicon" 
+                        (mouseOver)="onMouseOver(infoWindow, $event)"
+                        (mouseOut)="onMouseOut(infoWindow, $event)">
+                        <agm-info-window #infoWindow>
+                            <span><strong>Nombre : </strong>{{store.name}}</span><br /><br />
+                            <span><strong>Dueño : </strong>{{store.owner}}</span><br /><br />
+                            <span><strong>Reparto : </strong>{{store.delivery}}</span><br /><br />
+                            <span><strong>Teléfono : </strong>{{store.phone}}</span><br /><br />
+                            <span><strong>Dirección : </strong>{{store.address}}</span><br /><br />
+                            <span><strong>Horario Atencion :
+                                </strong>{{store.operationSchedule[0].range}}</span><br /><br />
+                            <div>
+                                <img [src]="store.pathphoto" alt="">
+                            </div>
+                            <button mat-button (click)="redirect(store)">COMPRAR</button>
+                        </agm-info-window>
+                    </agm-marker>
+                    <agm-marker *ngFor="let store of bodegas" [latitude]="store.latitud" [longitude]="store.longitud"
+                        [iconUrl]="store.pathicon"
+                        (mouseOver)="onMouseOver(infoWindow2, $event)"
+                        (mouseOut)="onMouseOut(infoWindow2, $event)"
+                        >
+                        <agm-info-window #infoWindow2>
+                            <span class="card-store"><strong>Nombre : </strong>{{store.name}}</span><br />
+                            <span class="card-store"><strong>Dueño : </strong>{{store.owner}}</span><br />
+                            <span class="card-store"><strong>Reparto : </strong>{{store.delivery}}</span><br />
+                            <span class="card-store"><strong>Teléfono : </strong>{{store.phone}}</span><br />
+                            <span class="card-store"><strong>Dirección : </strong>{{store.address}}</span><br />
+                            <span class="card-store"><strong>Horario Atencion :
+                                </strong>{{store.operationSchedule[0].range}}</span><br />
+                            <div>
+                                <img [src]="store.pathphoto" style="height: 150px;" alt="">
+                            </div>
+                            <button mat-button (click)="redirect(store)">COMPRAR</button>
+                        </agm-info-window>
+                    </agm-marker>
+
+                </agm-map>
+            </mat-card>
+        </mat-tab>
+
+    </mat-tab-group>
+
+
+
+</div>

@@ -1,0 +1,51 @@
+.order-acepted {
+    -webkit-box-shadow: -9px 11px 10px -8px rgba(37,207,159,1);
+    -moz-box-shadow: -9px 11px 10px -8px rgba(37,207,159,1);
+    box-shadow: -9px 11px 10px -8px rgba(37,207,159,1);
+    border: 1px solid rgba(37,207,159,1);
+}
+
+.order-reject {
+    -webkit-box-shadow: -9px 11px 10px -8px rgb(240, 80, 17);
+    -moz-box-shadow: -9px 11px 10px -8px rgb(240, 80, 17);;
+    box-shadow: -9px 11px 10px -8px rgb(240, 80, 17);;
+    border: 1px solid rgb(240, 80, 17);;
+}
+
+.order-pending {
+    -webkit-box-shadow: -9px 11px 10px -8px rgb(31, 100, 205);
+    -moz-box-shadow: -9px 11px 10px -8px rgb(31, 100, 205);
+    box-shadow: -9px 11px 10px -8px rgb(31, 100, 205);
+    border: 1px solid rgb(31, 100, 205);
+}
+
+.example-button-row {
+    display: table-cell;
+  }
+  
+  .example-button-row button {
+    display: table-cell;
+    margin-right: 8px;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    width: 480px;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+  
+  .button-container{
+    width: 100%;
+    height: 50px;
+   
+  }
+
+  .content-card{
+    margin-top: 10px;
+  }

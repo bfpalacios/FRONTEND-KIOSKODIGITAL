@@ -1,0 +1,61 @@
+<h2>Agregra Productos</h2>
+
+<mat-dialog-content>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Producto</mat-label>
+            <input type="text" autocomplete="off" name="criteria" [(ngModel)]="criteria" (keydown.enter)="search()"
+                matInput placeholder="Ingrese Criterio de Busqueda (press Enter)">
+            <mat-icon matSuffix (click)="search()">search</mat-icon>
+
+        </mat-form-field>
+
+    </form>
+    <table class="table mat-elevation-z8">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col"></th>
+                <th scope="col">Producto</th>
+                <th scope="col">Clase</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Sub categoría</th>
+                <th scope="col">Unidad de Medida</th>
+                <th scope="col">Precio</th>
+                <th scope="col">...</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of productsAutocomplte ; let i = index">
+                <td class="item-product" >{{i + 1}}</td>
+                <td >
+                    <img   [src]="item.imageUrl" alt="" height="42" width="42"> 
+                </td>
+                <th class="item-product">{{item.productName}}</th>
+                <th class="item-product">{{item.classname}}</th>
+                <td class="item-product">{{item.categories}}</td>
+                <td class="item-product">{{item.subcategory}}</td>
+                <td class="item-product">{{item.measurementUnit}}</td>
+
+                <td>
+                    <mat-form-field>
+
+                        <input matInput name="price" [(ngModel)]="item.price" value="{{item.price}}" type="number" />
+                    </mat-form-field>
+                </td>
+
+                <td>
+                    <button mat-mini-fab color="primary" title="Agregar mas productos" (click)="addProduct(item)">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>cerrar</button>
+
+</mat-dialog-actions>

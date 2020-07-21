@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Entregar Orden </h2><p class="message">{{this.message}}</p>
+<mat-dialog-content>
+    <p>Esta seguro de pasar la orden al estado ENTRGADO</p>
+</mat-dialog-content>
+<mat-dialog-actions class="text-center">
+    <button mat-button mat-dialog-close>No</button>
+    <button mat-raised-button color="primary" (click)="deliverOrderSave()" >Si</button>
+</mat-dialog-actions>

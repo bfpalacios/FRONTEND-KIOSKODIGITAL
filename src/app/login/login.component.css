@@ -1,0 +1,83 @@
+.login-register {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100%;
+  width: 100%;
+  padding: 10% 0;
+  position: fixed;
+}
+
+.login-box {
+  width: 400px;
+  margin: 0 auto;
+  top: 15%;
+}
+
+.login-box .footer {
+  width: 100%;
+  left: 0px;
+  right: 0px;
+}
+
+.login-box .social {
+  display: block;
+  margin-bottom: 30px;
+}
+
+#recoverform {
+  display: none;
+}
+
+.login-sidebar {
+  padding: 0px;
+  margin-top: 0px;
+}
+
+.login-sidebar .login-box {
+  right: 0px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.message-error{
+  color: red;
+  font-style: italic;
+}
+
+.container-login{
+  padding-top: 5%;
+}
+.backgound-login{
+  background-image: url('../../assets/img/home/fondo_login.png');
+   /* Full height */
+   height: 100%;
+
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+.img-logo{
+  height: 20px !important;
+  width: 20px !important;
+}
+
+::ng-deep mat-label{
+  color:#299012
+
+  ;
+}
+
+.btn-login{
+  background-color:#f58722 !important;
+  border-color: #f58722 !important;
+}
+
+.color-message-create-user{
+  color: #f58722;
+  cursor: pointer;
+}
+

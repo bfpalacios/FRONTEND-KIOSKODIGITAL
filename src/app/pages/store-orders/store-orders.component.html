@@ -1,0 +1,151 @@
+<mat-card>
+    <mat-card-title> Pedidos</mat-card-title>
+    <mat-card-content>
+        <div class="col-md-12 col-sm-12 col-lg-12">
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-lg-2">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Nombre Cliente</mat-label>
+                        <input type="text" autocomplete="off" [(ngModel)]="query.clientName" name="customerName"
+                            matInput placeholder="Ingrese cliente">
+
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-2 col-lg-2">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>DNI</mat-label>
+                        <input type="text" autocomplete="off" [(ngModel)]="query.clientDni" name="customerIdentifier"
+                            matInput placeholder="Ingrese cliente">
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-2 col-sm-2 col-lg-2">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [matDatepicker]="startDate" name="startDate" [(ngModel)]="query.orderStartDate">
+                        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                        <mat-datepicker #startDate></mat-datepicker>
+
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-2 col-lg-2">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [matDatepicker]="endDate" name="endDate" [(ngModel)]="query.orderEndDate">
+
+
+                        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                        <mat-datepicker #endDate></mat-datepicker>
+
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-2 col-lg-2">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Estado Ordenes</mat-label>
+                        <mat-select name="status" [(ngModel)]="query.status">
+                            <mat-option [value]="0">Seleccione Estado</mat-option>
+                            <mat-option *ngFor="let item of status" [value]="item.key">{{item.name}}</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-2 col-lg-2">
+                    <button mat-mini-fab color="primary" title="Agregar mas productos" (click)="search()">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="table-respnsible">
+                <table class="table mat-elevation-z8">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Cliente</th>
+
+                            <th scope="col">Delivery</th>
+                            <th scope="col">Estado De la Orden</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Monto</th>
+                            <th scope="col">...</th>
+                        </tr>
+                        <tr *ngFor="let item of orders.orders ; let i = index">
+                            <th scope="row">{{i + 1}}</th>
+                            <td>
+                                <p class="detail-customer user">{{item.customerName}}</p>
+                                <p class="detail-customer info">Dirección: {{item.customerAdress}}</p>
+                                <p class="detail-customer info">Teléfono: {{item.customerPhone}}</p>
+                            </td>
+
+                            <td>{{item.deliveryTypeName}}</td>
+
+                            <td class="text-center"><span
+                                    class="badge badge-{{item.statusbadge}}">{{item.statusName}}</span>
+                            </td>
+                            <td>{{item.orderDate}}</td>
+                            <td>s/.{{item.total.toFixed(2)}}</td>
+
+                            <td>
+                                <div class="button-container">
+                                    <div *ngIf="item.statusId == 'I'">
+                                        <button class="float-left" title="Rechazar" mat-mini-fab color="warn"
+                                            (click)="cancelOrder(item)">
+                                            <mat-icon>remove_shopping_cart
+                                            </mat-icon>
+                                        </button>
+                                        <button class="float-left" title="Atender" mat-mini-fab color="primary"
+                                            (click)="aceptOrder(item)">
+                                            <mat-icon>done_outline
+                                            </mat-icon>
+                                        </button>
+                                    </div>
+                                    <div *ngIf="item.statusId == 'A'">
+                                        <button class="float-left" title="Anular" mat-mini-fab color="warn"
+                                            (click)="cancelOrder(item)">
+                                            <mat-icon>remove_shopping_cart
+                                            </mat-icon>
+                                        </button>
+                                        <button *ngIf="item.deliveryTypeId == 'R'" class="float-left" title="Entregar"
+                                            (click)="deliverOrder(item)" mat-mini-fab color="primary">
+                                            <mat-icon>done_all
+                                            </mat-icon>
+
+                                        </button>
+                                        <button *ngIf="item.deliveryTypeId == 'E'" class="float-left" title="Enviar"
+                                            (click)="sendOrder(item)" mat-mini-fab color="primary">
+                                            <mat-icon>airport_shuttle
+                                            </mat-icon>
+                                        </button>
+                                    </div>
+                                    <div *ngIf="item.statusId == 'E'">
+                                        <button class="float-left" title="Anular" mat-mini-fab color="warn"
+                                            (click)="cancelOrder(item)">
+                                            <mat-icon>remove_shopping_cart
+                                            </mat-icon>
+                                        </button>
+                                        <button class="float-left" title="Entregar" mat-mini-fab color="primary"
+                                            (click)="deliverOrder(item)">
+                                            <mat-icon>done_all
+                                            </mat-icon>
+                                        </button>
+                                    </div>
+                                    <button class="float-left" title="Info" mat-mini-fab color="primary"
+                                        (click)="showDetails(item)">
+                                        <mat-icon>list
+                                        </mat-icon>
+                                    </button>
+
+                                </div>
+                            </td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <mat-paginator [length]="orders.totalRows" [pageSize]="30" (page)="paginate($event)"></mat-paginator>
+
+
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,259 @@
+<div id="content-page">
+    <div class="total">
+        <div class="nav-right text-center text-lg-right py-4 py-lg-0 buttonTotalResponsible">
+            <a class="btn btn-primary"> TOTAL : s/. {{total.toFixed(2)}}</a>
+
+        </div>
+    </div>
+    <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Productos">
+            <mat-card>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-lg-12 card-clas content-search">
+                            <div class="live__scroll">
+                                <div class="row text-center">
+
+                                    <div *ngFor="let item of listclass" class="col-md-1 col-sm-1 col-lg1 live__scroll--box"
+                                        (click)="loadCategoriesByClassAndStore(item)">
+                                        <img [src]="item.path"  [ngClass]="{'selected':item.isSelected}"   style="border-radius: 50%;" alt="" height="40"
+                                            width="40">
+                                        <p class="name-class" [ngClass]="{'selected-name-class':item.isSelected}"  >{{item.name}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12 card-clas content-search">
+                            <div class="live__scroll">
+                                <div class="row text-center">
+
+                                    <div *ngFor="let item of listcategories" class="col-md-1 col-sm-1 col-lg1 live__scroll--box"
+                                        (click)="loadSCategoriesBycategoryAndStore(item)">
+                                        <img [src]="item.path"[ngClass]="{'selected':item.isSelected}" style="border-radius: 50%;" alt="" height="40"
+                                            width="40">
+                                        <p class="name-class" [ngClass]="{'selected-name-class':item.isSelected}"  >{{item.name}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12 card-clas content-search">
+                            <div class="live__scroll">
+                                <div class="row text-center">
+
+                                    <div *ngFor="let item of listSubCategories" class="col-md-1 col-sm-1 col-lg1 live__scroll--box"
+                                        (click)="loadProducts(item)">
+                                        <img [src]="item.path" [ngClass]="{'selected':item.isSelected}" style="border-radius: 50%;" alt="" height="40"
+                                            width="40">
+                                        <p class="name-class" [ngClass]="{'selected-name-class':item.isSelected}">{{item.name}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12 card-clas content-search">
+                            <div class="live__scroll">
+                                <div class="row text-center">
+
+                                    <div *ngFor="let item of listSubSubCategories" class="col-md-1 col-sm-1 col-lg1 live__scroll--box"
+                                        (click)="loadProductSubSubCategories(item)">
+                                        <img [src]="item.path" [ngClass]="{'selected':item.isSelected}"   style="border-radius: 50%;" alt="" height="40"
+                                            width="40">
+                                        <p class="name-class" [ngClass]="{'selected-name-class':item.isSelected}">{{item.name}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-md-12 col-sm-12 col-lg-12 card-clas">
+                            <mat-card>
+                                <div class="col-md-12 col-sm-12 col-lg-12">
+                                    <form class="example-form">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Producto</mat-label>
+                                            <input type="text" autocomplete="off" name="criteria" [(ngModel)]="criteria"
+                                                (keydown.enter)="search()" matInput
+                                                placeholder="Ingrese Criterio de Busqueda (press Enter)">
+                                            <mat-icon (click)="search()" matSuffix>search</mat-icon>
+                                        </mat-form-field>
+                                    </form>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div *ngFor="let item of paginate.products"
+                                            class="col-md-3 col-sm-3 col-lg-3 card-clas">
+                                            <mat-card>
+                                                <mat-card-header>
+                                                    <mat-card-title>{{item.productName }}</mat-card-title>
+                                                    <mat-card-subtitle>{{item.categories}}</mat-card-subtitle>
+                                                </mat-card-header>
+                                                <mat-card-content class="text-center">
+
+                                                    <img mat-card-image height="290" [src]="item.imageUrl" alt="" />
+
+                                                    <span class="priceproduct"><strong class="priceproduct">Pre.
+                                                            Unitario : </strong>s/. {{item.price}}</span><br />
+                                                    <span><strong>Unidad Medida :
+                                                        </strong>{{item.measurementUnit}}</span><br />
+                                                </mat-card-content>
+                                                <mat-card-actions class="inline">
+                                                    <div>
+                                                        <div class="button-container">
+                                                            <button class="btn-color-product" mat-mini-fab
+                                                                (click)="addquantity(item)">
+                                                                <mat-icon>add</mat-icon>
+                                                            </button>
+
+                                                            <mat-form-field class="quantity-full-width">
+
+                                                                <input matInput name="quantity"
+                                                                    [(ngModel)]="item.quantity"
+                                                                    value="{{item.quantity}}" [disabled]="true" />
+                                                            </mat-form-field>
+
+
+
+                                                            <button mat-mini-fab class="btn-color-product"
+                                                                (click)="removequantity(item)">
+                                                                <mat-icon>remove</mat-icon>
+                                                            </button>
+
+                                                            <button mat-mini-fab
+                                                                class="add_shopping_cart btn-color-add-product"
+                                                                color="accent" (click)="addShoppingCart(item)">
+                                                                <mat-icon>add_shopping_cart</mat-icon>
+                                                            </button>
+
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </mat-card-actions>
+                                            </mat-card>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="text-center" *ngIf="paginate.totalRows == 0">
+                                    <h1 style="font-style: italic">No se encontraron productos</h1>
+                                </div>
+                                <mat-card-actions *ngIf="paginate.numberPages > 1" class="text-center">
+
+                                    <button *ngFor="let item of paginate.numberPagesList" mat-mini-fab color=""
+                                        [ngClass]="{'pagine-active': item == paginate.currentPage}"
+                                        (click)="searchPaginate(item)">
+                                        {{item + 1 }}
+                                    </button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </mat-tab>
+        <mat-tab label="Lista de Compras">
+
+            <mat-card>
+                <div class="container">
+                    <div class="row">
+                        <mat-card class="col-md-12 col-sm-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-md-5 col-sm-5 col-lg-5 container-provedor justify-content-center">
+                                    <div style="display: flex;">
+                                        <img class="img-store" [src]="storeSelected.pathphoto" alt="">
+                                        <div class="info-store">
+                                            <p class="owner-store">{{storeSelected.name}}</p>
+                                            <span class="info-store-itmes">{{storeSelected.owner}}</span><br />
+                                            <span class="info-store-itmes">{{storeSelected.address}}</span><br />
+                                            <span class="info-store-itmes">{{storeSelected.phone}}</span><br />
+                                            <span
+                                                class="info-store-itmes">{{storeSelected.operationSchedule[0].range}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-lg-3 container-provedor justify-content-center">
+                                    <mat-form-field class="clas-delivery">
+                                        <mat-label>Tipo delivery</mat-label>
+                                        <mat-select name="deliveryType" (selectionChange)="changedeliveryType()"  [(ngModel)]="serviceType" required>
+                                            <mat-option value="E">Envio</mat-option>
+                                            <mat-option value="R">Recogo en tienda</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-lg3 container-provedor justify-content-center">
+                                    <mat-form-field class="">
+                                        <mat-label>Fecha Entrega</mat-label>
+                                        <input matInput [matDatepicker]="picker" [(ngModel)]="dateDelivery"
+                                            [min]="minDate" [max]="maxDate" name="name"
+                                            (dateChange)="changeDate(dateDelivery)">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker touchUi #picker></mat-datepicker>
+                                    </mat-form-field>
+                                    <mat-radio-group *ngIf="serviceType == 'E' && dateDelivery != null" name="opciones"
+                                        [(ngModel)]="hourDelivery  " class="col-md-12 col-sm-12 col-lg-12"
+                                        aria-label="Select an option">
+                                        <div *ngFor="let item of shedulesDelivery ; let i = index  ">
+                                            <mat-radio-button name="opciones" [value]="i">{{item.range}}
+                                            </mat-radio-button>
+                                        </div>
+
+                                        <p *ngIf="shedulesDelivery.length == 0">Para hoy ya no hay delivery</p>
+                                    </mat-radio-group>
+                                </div>
+                                <div
+                                    class="col-md-1 col-sm-1 col-lg-1 clas-delivery container-provedor justify-content-center">
+                                    <button *ngIf="dateDelivery != null && productsInCar.length > 0"
+                                        (click)="saveOrder()" mat-raised-button color="primary">
+                                        Comprar
+                                    </button>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-lg12 table-products justify-content-center table-respnsible">
+                                    <table class="table mat-elevation-z8">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col"></th>
+                                                <th scope="col">Producto</th>
+                                                <th scope="col">Precio Unitario</th>
+                                                <th scope="col">Cantidad</th>
+                                                <th scope="col">Sub Total</th>
+                                                <th scope="col">...</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of productsInCar ; let i = index ">
+                                                <th scope="row">{{i + 1}}</th>
+                                                <th>
+
+                                                    <img [src]="item.imageUrl" alt="" height="42" width="42">
+
+                                                </th>
+                                                <td>{{item.productName}}</td>
+                                                <td>s/. {{ item.price }}</td>
+                                                <td>{{ item.quantity.toFixed(2) }} {{item.measurementUnit}}</td>
+                                                <td><span class="priceproduct">s/.{{ item.total.toFixed(2) }}</span>
+                                                </td>
+                                                <td>
+                                                    <button mat-mini-fab color="warn" title="Quitar"
+                                                        (click)="removeShoppingCart(item,i)">
+                                                        <mat-icon>remove_shopping_cart</mat-icon>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+</div>

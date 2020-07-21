@@ -1,0 +1,26 @@
+.form-full-width {
+    width: 100%;
+  }
+
+
+  #image{
+    display: none;
+  }
+
+  .image-upoad-container{
+    cursor: pointer;
+  }
+
+  .img-preview-container{
+    background-color: #f7f7f7 ;
+    position: relative;
+    height: 167px;
+    width: 280px;
+ 
+  }
+  .img-preview{
+     background: center center no-repeat;
+     background-size: contain;
+     height: 167px;
+     width: 280px;
+  }

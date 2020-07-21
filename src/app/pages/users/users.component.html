@@ -1,0 +1,281 @@
+<mat-card>
+    <mat-card-title>Registro Usuario</mat-card-title>
+    <p class="error">{{message}}</p>
+    <form (submit)="saveUser()">
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Nombre</mat-label>
+                        <input type="text" [(ngModel)]="user.name" name="name" matInput placeholder="Nombre" required>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'name'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Apellido Paterno</mat-label>
+                        <input type="text" [(ngModel)]="user.lastNamePaternal" name="lastNamePaternal" matInput
+                            placeholder="Apellido Paterno" required>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'lastNamePaternal'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Apellido Materno</mat-label>
+                        <input type="text" [(ngModel)]="user.lastNameMaternal" name="lastNameMaternal" matInput
+                            placeholder="Apellido Materno" required>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'lastNameMaternal'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Tipo de Usuario</mat-label>
+                        <mat-select name="userType" [(ngModel)]="user.userType" required>
+                            <mat-option value="C">Cliente</mat-option>
+                            <mat-option value="P">Proveedor</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'userType'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Email</mat-label>
+                        <input type="email" [(ngModel)]="user.email" name="email" matInput placeholder="email" required>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'email'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Password</mat-label>
+                        <input type="password" [(ngModel)]="user.password" name="password" autocomplete="on" matInput
+                            placeholder="Password" required>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'password'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Departamento</mat-label>
+                        <mat-select (selectionChange)="changeDepartment($event.value)" [(ngModel)]="user.departament"
+                            name="departament" required>
+                            <mat-option></mat-option>
+                            <mat-option *ngFor="let item of departament" [value]="item.name">{{item.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'departament'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Provincia</mat-label>
+                        <mat-select (selectionChange)="changeprov($event.value)" [(ngModel)]="user.province"
+                            name="province" required>
+                            <mat-option></mat-option>
+                            <mat-option *ngFor="let item of province" [value]="item.name">{{item.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'province'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Distrito</mat-label>
+                        <mat-select [(ngModel)]="user.district" name="district" required>
+                            <mat-option *ngFor="let item of dist" [value]="item.name">{{item.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>direccion</mat-label>
+                        <input matInput type="text" name="addres" [(ngModel)]="user.address" autocomplete="off"
+                            matTooltip="Info about the action" [disabled]=true>
+                    </mat-form-field>
+                   
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Latitud</mat-label>
+                        <input matInput type="text" name="latitude" [(ngModel)]="user.latitude" autocomplete="off"
+                            [disabled]=true>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Longitud</mat-label>
+                        <input matInput type="text" name="longitude" [(ngModel)]="user.longitude" autocomplete="off"
+                            [disabled]=true>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+
+                    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                        <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                            (dragEnd)="markerDragEnd($event)"></agm-marker>
+                    </agm-map>
+
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Teléfono</mat-label>
+                        <input type="text" [(ngModel)]="user.phoneNumber" name="phoneNumber" matInput
+                            placeholder="Teléfono" required>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'phoneNumber'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>DNI</mat-label>
+                        <input type="text" [(ngModel)]="user.dni" name="dni" matInput placeholder="Teléfono" required>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'dni'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Nombre Tienda</mat-label>
+                        <input type="text" [(ngModel)]="user.businessName" name="businessName" matInput
+                            placeholder="Nombre bodega" required>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'businessName'}}
+                    </mat-error>
+                </div>
+            </div>
+
+            <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Delivery</mat-label>
+                        <input type="text" [(ngModel)]="user.delivery" name="delivery" matInput placeholder="Delivery"
+                            required>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'delivery'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Tipo de Establecimiento</mat-label>
+                        <mat-select name="establishmentType" [(ngModel)]="user.establishmentType" required>
+                            <mat-option value="1">Bodega</mat-option>
+                            <mat-option value="2">Puesto de Mercado</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'establishmentType'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Ruc</mat-label>
+                        <input type="text" [(ngModel)]="user.ruc" name="ruc" matInput placeholder="Ruc" required>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'ruc'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div *ngIf="user.userType == 'P'" class="col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Horario de atención</mat-label>
+                        <mat-select name="operationSchedule" [(ngModel)]="user.operationSchedule" multiple required>
+                            <mat-option *ngFor="let item of operationScheduleDropDown"
+                                [value]="item.shippingScheduleId">{{item.range}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'operationSchedule'}}
+                    </mat-error>
+
+                </div>
+            </div>
+            <div *ngIf="user.userType == 'P'" class="col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Horario de Delivery</mat-label>
+                        <mat-select name="shippingSchedule" [(ngModel)]="user.shippingSchedule" multiple required>
+                            <mat-option *ngFor="let item of shippingScheduleDropDown" [value]="item.shippingScheduleId">
+                                {{item.range}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-error>
+                        {{ this.errors | errorMessage : 'shippingSchedule'}}
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label class="image-upoad-container btn btn-primary">
+                        <span>Seleccionar una foto</span>
+                        <input id="image" #imgageInput type="file" accept="image/*" (change)="procesfile(imgageInput)">
+                    </label>
+                    <div *ngIf="selectedFile" class="img-preview-container">
+                        <div class="img-preview" [ngStyle]="{'background-image':'url('+selectedFile.src +')'}">
+
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+
+        </div>
+
+        <mat-card-actions class="d-flex justify-content-end">
+            <button mat-raised-button [routerLink]="['/login']">Cancelar</button>
+            <button mat-raised-button type="submit" color="primary">Guardar</button>
+        </mat-card-actions>
+    </form>
+</mat-card>

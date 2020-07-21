@@ -1,0 +1,61 @@
+
+<mat-card>
+    <mat-card-title>Mis Pedidos </mat-card-title>
+    <mat-card-content>
+        <div class="col-md-2 col-sm-2 col-lg-2">
+            <mat-form-field class="example-full-width">
+                <mat-label>Estado Ordenes</mat-label>
+                <mat-select name="status" (selectionChange)="changestatus($event.value)" [(ngModel)]="query.status">
+                    <mat-option [value]="0">Seleccione Estado</mat-option>
+                    <mat-option *ngFor="let item of status" [value]="item.key">{{item.name}}</mat-option>
+
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="table-respnsible">
+        <table class="table mat-elevation-z8">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Establecimiento</th>
+                    <th scope="col">Responsable</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Delivery</th>
+                    <th scope="col">Estado De la Orden</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Monto</th>
+                    <th scope="col"></th>
+                </tr>
+                <tr *ngFor="let item of orders.orders ; let i = index">
+                    <td >{{i + 1}}</td>
+                    <td>{{item.storeName}}</td>
+                    <td>{{item.ownerName}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.deliveryTypeName}}</td>
+                    <td><span class="badge badge-{{item.statusbadge}}">{{item.statusName}}</span></td>
+                    <td>{{item.orderDate}}</td>
+                    <td class="priceproduct">s/.{{item.total.toFixed(2)}}</td>
+
+                    <td><div class="button-container">
+                        <button *ngIf="item.statusId == 'I'" class="float-left" title="Anular" mat-mini-fab color="warn" (click)="cancelOrder(item)">
+                            <mat-icon>remove_shopping_cart
+                            </mat-icon>
+                        </button>
+                        <button class="float-right" mat-mini-fab color="primary" title="Descargar " (click)="downloadExcel(item)">
+                            <span class="iconify" style="width: 24px; height: 24px;" data-icon="mdi-file-excel" data-inline="false"></span>
+                        </button>
+                        <button class="float-right" mat-mini-fab color="primary" title="ver detalle" (click)="openDialog(item)">
+                            <mat-icon>list</mat-icon>
+                        </button>
+                    </div></td>
+
+                </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
+    </div>
+        <mat-paginator [length]="orders.totalRows"[pageSize]="30" (page)="paginate($event)" ></mat-paginator>
+    </mat-card-content>
+</mat-card>

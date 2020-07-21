@@ -1,0 +1,25 @@
+<p>Ediat Producto : {{product.productName }}</p>
+<mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Precio</mat-label>
+        <input matInput name="precio" [(ngModel)]="product.price" type="number">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Stock</mat-label>
+        <mat-select name="userType" [(ngModel)]="product.stock">
+            <mat-option [value]="'SI'">SI</mat-option>
+            <mat-option [value]="'NO'">NO</mat-option>
+        </mat-select>
+
+    </mat-form-field>
+</mat-dialog-content>
+
+
+<mat-dialog-content>
+    
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>cancelar</button>
+        <button mat-raised-button color="primary" (click)="guardar()">Guardar</button>
+        <br/>
+        <br/>
+    </mat-dialog-actions>

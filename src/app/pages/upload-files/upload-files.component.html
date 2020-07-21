@@ -1,0 +1,48 @@
+<mat-card>
+    <mat-card-title>
+        Subir fotos
+    </mat-card-title>
+    <mat-card-content>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <mat-form-field class="form-full-width">
+                        <mat-label>Id</mat-label>
+                        <input type="number" autocomplete="off" name="id" [(ngModel)]="entity.entity_id" matInput required>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <mat-form-field class="form-full-width">
+        
+                        <mat-label>Entidad`</mat-label>
+                        <mat-select name="shippingSchedule" [(ngModel)]="entity.entity" required>
+                            <mat-option *ngFor="let item of types" [value]="item">
+                                {{item}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label class="image-upoad-container btn btn-primary">
+                            <span>Seleccionar una foto</span>
+                            <input id="image" #imgageInput type="file" accept="image/*" (change)="procesfile(imgageInput)">
+                        </label>
+                        <div *ngIf="selectedFile" class="img-preview-container">
+                            <div class="img-preview" [ngStyle]="{'background-image':'url('+selectedFile.src +')'}">
+    
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+
+
+
+    </mat-card-content>
+    <mat-card-actions class="d-flex justify-content-end">
+        <button mat-raised-button color="primary" (click)="saveimage()">guardar</button>
+    </mat-card-actions>
+</mat-card>
