@@ -22,30 +22,38 @@
 .example-button-row {
     display: table-cell;
   }
-  
+
   .example-button-row button {
     display: table-cell;
     margin-right: 8px;
   }
-  
+
   .example-flex-container {
     display: flex;
     justify-content: space-between;
     width: 480px;
   }
-  
+
   .example-button-container {
     display: flex;
     justify-content: center;
     width: 120px;
   }
-  
+
   .button-container{
     width: 100%;
     height: 50px;
-   
+
   }
 
   .content-card{
     margin-top: 10px;
+  }
+
+  .btn-search {
+    background: #299012;
+    color: #ffffff;
+    margin-top: 5px;
+    margin-left: 0;
+    margin-right: 20px;
   }

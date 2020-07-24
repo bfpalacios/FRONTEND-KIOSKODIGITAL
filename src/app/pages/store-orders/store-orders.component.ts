@@ -25,13 +25,15 @@ export class StoreOrdersComponent implements OnInit {
   status: any[] = statusDropDown;
   orders: OrdersPaginate = new OrdersPaginate();
 
-
   constructor(
     private storeService: StoreService,
     private localStorageService: LocalStorageService,
     public dialog: MatDialog) {
-    this.consumer();
+  }
 
+  ngOnInit(): void {
+    this.query.orderStartDate = moment().format();
+    this.query.orderEndDate = moment().format();
   }
 
   search() {
@@ -39,11 +41,18 @@ export class StoreOrdersComponent implements OnInit {
   }
 
   consumer() {
-    this.storeService.getOrdersByStore(this.localStorageService.getInfoUserLogged().establishmentId, this.query).subscribe((res: any) => {
+    const query = {
+      ...this.query,
+      orderStartDate: moment(this.query.orderStartDate).format('YYYY-MM-DD'),
+      orderEndDate: moment(this.query.orderEndDate).format('YYYY-MM-DD')
+    };
+    this.storeService.getOrdersByStore(this.localStorageService.getInfoUserLogged().establishmentId, query).subscribe((res: any) => {
       this.orders = res
-    
-      this.query.orderStartDate = moment(this.query.orderStartDate).format('YYYY-MM-DD');
-      this.query.orderEndDate = moment(this.query.orderEndDate).format('YYYY-MM-DD');
+
+      // this.query.orderStartDate = moment(this.query.orderStartDate).format('YYYY-MM-DD');
+      // console.log(this.query.orderStartDate)
+      // this.query.orderEndDate = moment(this.query.orderEndDate).format('YYYY-MM-DD');
+      // console.log(this.query.orderEndDate)
     })
   }
 
@@ -58,10 +67,6 @@ export class StoreOrdersComponent implements OnInit {
   paginate(event) {
     this.query.page = event.pageIndex;
     this.consumer();
-  }
-
-
-  ngOnInit(): void {
   }
 
   cancelOrder(order: OrderModel) {

@@ -141,13 +141,13 @@ import { EditProductComponent } from './store-products/edit-product/edit-product
         MatAutocompleteModule,
         MatPaginatorModule,
         MatSlideToggleModule,
-       
+
 
     ],
     providers: [
         { provide: DateAdapter, useClass: AppDateAdapter },
         { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
-     
+
     ]
 })
 

@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "bodega-web"
+  "defaultProject": "bodega-web",
+  "cli": {
+    "analytics": "73d7f228-505f-4223-922a-83cadbd8fb2f"
+  }
 }

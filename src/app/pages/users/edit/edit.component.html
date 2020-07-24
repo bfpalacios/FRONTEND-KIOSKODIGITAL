@@ -38,6 +38,31 @@
                     </mat-error>
                 </div>
             </div>
+
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                  <mat-form-field class="form-full-width">
+                      <mat-label>Teléfono</mat-label>
+                      <input type="text" [(ngModel)]="user.phoneNumber" name="phoneNumber" matInput
+                          placeholder="Teléfono" required>
+                  </mat-form-field>
+                  <mat-error>
+                      {{ this.errors | errorMessage : 'phoneNumber'}}
+                  </mat-error>
+              </div>
+          </div>
+          <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                  <mat-form-field class="form-full-width">
+                      <mat-label>DNI</mat-label>
+                      <input type="text" [(ngModel)]="user.dni" name="dni" matInput placeholder="Teléfono" required>
+                  </mat-form-field>
+                  <mat-error>
+                      {{ this.errors | errorMessage : 'dni'}}
+                  </mat-error>
+              </div>
+          </div>
+
             <!-- <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="form-group">
                     <mat-form-field class="form-full-width">
@@ -118,14 +143,14 @@
             <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="form-group">
                     <mat-form-field class="form-full-width">
-                        <mat-label>direccion</mat-label>
+                        <mat-label>Direcci&oacute;n</mat-label>
                         <input matInput type="text" name="addres" [(ngModel)]="user.address" autocomplete="off"
-                            matTooltip="Info about the action" [disabled]=true>
+                            matTooltip="Info about the action">
                     </mat-form-field>
-                   
+
                 </div>
             </div>
-            <div class="col-sm-4 col-md-4 col-lg-4">
+            <!-- <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="form-group">
                     <mat-form-field class="form-full-width">
                         <mat-label>Latitud</mat-label>
@@ -142,7 +167,7 @@
                             [disabled]=true>
                     </mat-form-field>
                 </div>
-            </div>
+            </div> -->
 
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
@@ -152,29 +177,6 @@
                             (dragEnd)="markerDragEnd($event)"></agm-marker>
                     </agm-map>
 
-                </div>
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="form-group">
-                    <mat-form-field class="form-full-width">
-                        <mat-label>Teléfono</mat-label>
-                        <input type="text" [(ngModel)]="user.phoneNumber" name="phoneNumber" matInput
-                            placeholder="Teléfono" required>
-                    </mat-form-field>
-                    <mat-error>
-                        {{ this.errors | errorMessage : 'phoneNumber'}}
-                    </mat-error>
-                </div>
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="form-group">
-                    <mat-form-field class="form-full-width">
-                        <mat-label>DNI</mat-label>
-                        <input type="text" [(ngModel)]="user.dni" name="dni" matInput placeholder="Teléfono" required>
-                    </mat-form-field>
-                    <mat-error>
-                        {{ this.errors | errorMessage : 'dni'}}
-                    </mat-error>
                 </div>
             </div>
             <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
@@ -259,7 +261,7 @@
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
                     <label class="image-upoad-container btn btn-primary">
-                        <span>Seleccionar una foto</span>
+                        <span>Seleccionar una foto de perfil</span>
                         <input id="image" #imgageInput type="file" accept="image/*" (change)="procesfile(imgageInput)">
                     </label>
                     <div *ngIf="selectedFile" class="img-preview-container">
@@ -267,7 +269,7 @@
 
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
 

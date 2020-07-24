@@ -5,7 +5,8 @@
 
 export const environment = {
   production: false,
-  API_URL: `http://3.12.113.115:6063/`,
+  // API_URL: `http://3.12.113.115:6063/`,
+  API_URL : `https://api.rantyk.com/`,
   ITEMS_PER_PAGE: 21,
   CUSTOMER: 'CUSTOMER',
   PROVIDER: 'PROVIDER',

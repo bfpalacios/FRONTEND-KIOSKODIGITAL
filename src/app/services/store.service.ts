@@ -46,7 +46,7 @@ export class StoreService {
         console.log(x.data)
         return x != null ? mapSubSubCategoriesSearch(x.data.subSubCategories) : [];
       }
-      
+
     }))
   }
 
@@ -79,10 +79,10 @@ export class StoreService {
     });
   }
 
-  getOrdersByStore(storeId: number, param: OrderFilters) {
+  getOrdersByStore(storeId: number, param: any) {
+    // param.orderStartDate = moment(param.orderStartDate).format('YYYY-MM-DD');
+    // param.orderEndDate = moment(param.orderEndDate).format('YYYY-MM-DD');
 
-    param.orderStartDate = moment(param.orderStartDate).format('YYYY-MM-DD');
-    param.orderEndDate = moment(param.orderEndDate).format('YYYY-MM-DD');
     if (Number(param.status) != 0) {
       param['order-state'] = param.status;
     } else {

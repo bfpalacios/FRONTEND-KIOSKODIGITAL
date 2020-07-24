@@ -25,17 +25,13 @@
                         <input matInput [matDatepicker]="startDate" name="startDate" [(ngModel)]="query.orderStartDate">
                         <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
                         <mat-datepicker #startDate></mat-datepicker>
-
                     </mat-form-field>
                 </div>
                 <div class="col-md-2 col-sm-2 col-lg-2">
                     <mat-form-field class="example-full-width">
-                        <input matInput [matDatepicker]="endDate" name="endDate" [(ngModel)]="query.orderEndDate">
-
-
+                        <input matInput [matDatepicker]="endDate" name="endDate" [(ngModel)]="query.orderEndDate" >
                         <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
-                        <mat-datepicker #endDate></mat-datepicker>
-
+                        <mat-datepicker #endDate startView="multi-year"></mat-datepicker>
                     </mat-form-field>
                 </div>
                 <div class="col-md-2 col-sm-2 col-lg-2">
@@ -44,7 +40,6 @@
                         <mat-select name="status" [(ngModel)]="query.status">
                             <mat-option [value]="0">Seleccione Estado</mat-option>
                             <mat-option *ngFor="let item of status" [value]="item.key">{{item.name}}</mat-option>
-
                         </mat-select>
                     </mat-form-field>
                 </div>

@@ -73,7 +73,7 @@ export class ProductsComponent implements OnInit {
 
     this.storeService.getClassByStore(this.storeSelected.id).subscribe((res:any)=>{
       this.listclass = res;
-      
+
     })
 
   }
@@ -81,7 +81,7 @@ export class ProductsComponent implements OnInit {
   loadCategoriesByClassAndStore(itemClass:any){
     this.listclass.forEach((item)=>    item.isSelected = item == itemClass);
 
-    
+
     this.listSubCategories = [];
     this.listSubSubCategories=[];
     this.storeService.getCategoriesByStoreAndClass(this.storeSelected.id,itemClass.id).subscribe((res:any)=>{
@@ -131,7 +131,7 @@ export class ProductsComponent implements OnInit {
     })
   }
 
-  
+
   loadProducts(item: any) {
     this.listSubCategories.forEach((a)=>    a.isSelected = a == item)
     this.listSubSubCategories= [];
@@ -142,7 +142,7 @@ export class ProductsComponent implements OnInit {
         }else{
           this.listSubSubCategories = res;
         }
-       
+
       })
     })
 
@@ -190,6 +190,7 @@ export class ProductsComponent implements OnInit {
   }
 
   addShoppingCart(item: ProductModel) {
+    console.log(item)
     let newproduct: ProductModel = _.clone(item)
     let exist = _.find(this.productsInCar, (x) => { return x.productId === item.productId });
     if (exist === undefined) {
@@ -209,16 +210,13 @@ export class ProductsComponent implements OnInit {
       item.quantity = 1;
     }
     this._snackBar.open('El producto ha sido agregado del carrito', 'cerrar', { duration: 2000 });
-    this.localStorageService.AddProductInCard();
-    
+    this.localStorageService.AddProductInCard(true);
   }
 
   removeShoppingCart(item: ProductModel, index: number) {
     this.productsInCar.splice(index, 1);
     this.total = _.sum(this.productsInCar.map(item => item.total));
     this._snackBar.open('Producto ha sido agregado al Carrito', 'cerrar', { duration: 2000 });
-
-
   }
 
   saveOrder() {
@@ -236,9 +234,12 @@ export class ProductsComponent implements OnInit {
         if (res.success) {
           this._snackBar.open('Su compra ha sido realizada con éxito', 'cerrar', { duration: 2000 });
           this.productsInCar = [];
-          this.routernavigate.navigate(['/my-orders']);
+          this.localStorageService.AddProductInCard(false);
+          setTimeout(() => {
+            this.routernavigate.navigate(['/my-orders']);
+          }, 2500);
         }
-      })
+      });
     }
 
   }
@@ -253,11 +254,11 @@ export class ProductsComponent implements OnInit {
           if (endDateHour > current_hour) {
             this.shedulesDelivery.push(item);
           }
-  
+
         })
-  
-  
-  
+
+
+
       } else {
         this.shedulesDelivery = this.storeSelected.shippingSchedule;
       }

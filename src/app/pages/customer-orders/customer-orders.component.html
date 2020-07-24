@@ -2,16 +2,53 @@
 <mat-card>
     <mat-card-title>Mis Pedidos </mat-card-title>
     <mat-card-content>
-        <div class="col-md-2 col-sm-2 col-lg-2">
-            <mat-form-field class="example-full-width">
-                <mat-label>Estado Ordenes</mat-label>
-                <mat-select name="status" (selectionChange)="changestatus($event.value)" [(ngModel)]="query.status">
-                    <mat-option [value]="0">Seleccione Estado</mat-option>
-                    <mat-option *ngFor="let item of status" [value]="item.key">{{item.name}}</mat-option>
+      <div class="row">
 
-                </mat-select>
+          <div class="col-md-2 col-sm-2 col-lg-2">
+            <mat-form-field class="example-full-width">
+              <mat-label>Estado Ordenes</mat-label>
+              <mat-select name="status" (selectionChange)="changestatus($event.value)" [(ngModel)]="query.status">
+                  <mat-option [value]="0">Seleccione Estado</mat-option>
+                  <mat-option *ngFor="let item of status" [value]="item.key">{{item.name}}</mat-option>
+              </mat-select>
             </mat-form-field>
-        </div>
+          </div>
+
+          <div class="col-md-2 col-sm-2 col-lg-2">
+            <mat-form-field class="form-full-width">
+              <mat-label>Filtro por Establecimiento</mat-label>
+              <input type="text" name="establecimiento" [(ngModel)]="establecimientoFilter" matInput placeholder="Buscar establecimiento" #est (change)="filterEstablecimiento(est.value)">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-2 col-sm-2 col-lg-2">
+            <mat-form-field class="example-full-width">
+              <mat-label>Seleccione Fecha</mat-label>
+              <input matInput [matDatepicker]="picker" [(ngModel)]="dateFilter">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-1 col-sm-1 col-lg-1">
+            <button class="btn-search" mat-button mat-dialog-close (click)="filterDate()">
+              <mat-icon>search</mat-icon>
+              Filtrar
+            </button>
+          </div>
+
+          <div class="col-md-3 col-sm-3 col-lg-3">
+            <mat-form-field class="example-full-width">
+              <mat-label>Tipo de Delivery</mat-label>
+              <mat-select name="status" (selectionChange)="filterDeliveryType($event.value)"  [(ngModel)]="deliveryTypeFilter">
+                  <mat-option value="0" selected disabled>Seleccione</mat-option>
+                  <mat-option value="E">Envío</mat-option>
+                  <mat-option value="R">Recojo en tienda</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+      </div>
         <div class="table-respnsible">
         <table class="table mat-elevation-z8">
             <thead>
@@ -52,7 +89,7 @@
                 </tr>
             </thead>
             <tbody>
-               
+
             </tbody>
         </table>
     </div>

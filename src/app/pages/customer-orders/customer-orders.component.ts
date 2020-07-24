@@ -8,6 +8,8 @@ import { OrderModel } from '../../models/entities/order.model';
 import { CancelComponent } from './cancel/cancel.component';
 import { statusDropDown } from 'src/mocks/orderStatus';
 import { OrderCustomerFilters } from 'src/app/models/filters/order.customer.filter';
+import * as moment from 'moment';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-customer-orders',
@@ -18,6 +20,10 @@ export class CustomerOrdersComponent implements OnInit {
 
   query: OrderCustomerFilters = new OrderCustomerFilters();
   status: any[] = statusDropDown;
+
+  establecimientoFilter: string = null;
+  dateFilter: string = null;
+  deliveryTypeFilter: string = null;
 
 
   orders: OrdersPaginate = new OrdersPaginate();
@@ -68,10 +74,48 @@ export class CustomerOrdersComponent implements OnInit {
     })
   }
 
-  changestatus(status: number) {
+  changestatus(status: any) {
+    this.query.status = status;
     this.customerService.getOrdersByUser(this.localStorageService.getInfoUserLogged().customerId, 0,this.query).subscribe((res: OrdersPaginate) => {
       this.orders = res;
-    })
+      this.dateFilter = null;
+      this.establecimientoFilter = null;
+      this.deliveryTypeFilter = null;
+    });
+  }
+
+  filterEstablecimiento(val: string) {
+    this.query.status = val;
+    this.customerService.getOrdersByUser(this.localStorageService.getInfoUserLogged().customerId, 0,this.query).subscribe((res: OrdersPaginate) => {
+      this.orders = res;
+      this.dateFilter = null;
+      this.deliveryTypeFilter = null;
+    });
+
+  }
+
+  filterDate() {
+    this.query.status = moment(this.dateFilter).format('DD-MM-YYYY');
+    this.customerService.getOrdersByUser(this.localStorageService.getInfoUserLogged().customerId, 0,this.query).subscribe((res: OrdersPaginate) => {
+      this.orders = res;
+      this.deliveryTypeFilter = null;
+    });
+    if (this.establecimientoFilter !== null) {
+      this.dateFilter = null;
+    }
+
+    if (this.dateFilter !== null) {
+      this.establecimientoFilter = null;
+    }
+  }
+
+  filterDeliveryType(typeDel: string) {
+    this.query.status = typeDel === 'R' ? 'Recojo en tienda' : 'envio';
+    this.customerService.getOrdersByUser(this.localStorageService.getInfoUserLogged().customerId, 0,this.query).subscribe((res: OrdersPaginate) => {
+      this.orders = res;
+      this.dateFilter = null;
+      this.establecimientoFilter = null;
+    });
   }
 
 }

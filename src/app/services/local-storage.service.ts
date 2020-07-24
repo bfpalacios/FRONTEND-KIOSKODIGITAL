@@ -38,8 +38,8 @@ export class LocalStorageService {
     return user != undefined ? user.type : '';
   }
 
-  AddProductInCard(){
-    localStorage.setItem('PRODUCT-IN-CARD', JSON.stringify(true));
+  AddProductInCard(val: boolean){
+    localStorage.setItem('PRODUCT-IN-CARD', JSON.stringify(val));
   }
 
   HasProductInCard(){
@@ -49,7 +49,7 @@ export class LocalStorageService {
 
   removeProductInCard(){
     localStorage.removeItem('PRODUCT-IN-CARD');
-    
+
   }
 
   loggout() {

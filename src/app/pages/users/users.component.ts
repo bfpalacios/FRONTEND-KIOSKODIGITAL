@@ -102,24 +102,29 @@ export class UsersComponent implements OnInit {
   saveUser() {
     this.errors = [];
     this.message = '';
+    console.log(this.user)
     if (this.user.userType == 'C') {
       this.userService.saveCustomer(mapUser(this.user)).subscribe((res: any) => {
         if (res.success) {
           if (this.selectedFile) {
             this.userService.uploadPhoto(this.selectedFile.file, res.data.customer.customerId, 'Customer').subscribe((res: any) => {
-              this._snackBar.open('El usuario se ha registrado correctamente, porfavor inicie sesion ', 'cerrar', { duration: 2000 });
-              this.router.navigate(['/login'])
-            })
-          }else {
-            this._snackBar.open('El usuario se ha registrado correctamente, porfavor inicie sesion ', 'cerrar', { duration: 2000 });
-            this.router.navigate(['/login'])
+              this._snackBar.open('El usuario se ha registrado correctamente, porfavor inicie sesion ', 'cerrar', { verticalPosition: 'top', duration: 3000 });
+              setTimeout(() => {
+                this.router.navigate(['/login']);
+              }, 3000);
+            });
+          } else {
+            this._snackBar.open('El usuario se ha registrado correctamente, porfavor inicie sesión ', 'cerrar', { verticalPosition: 'top', duration: 3000 });
+            setTimeout(() => {
+              this.router.navigate(['/login']);
+            }, 3000);
           }
         }else{
           this.message = res.message;
-        } 
+        }
       }, (err) => {
         if (err.status == 400) {
-          this.errors = err.error.fields
+          this.errors = err.error.fields;
         }
       });
     }
@@ -129,17 +134,20 @@ export class UsersComponent implements OnInit {
         if (res.success) {
           if (this.selectedFile) {
             this.userService.uploadPhoto(this.selectedFile.file, res.data.establishment.establishmentId, 'Establishment').subscribe((resph: any) => {
-              this._snackBar.open('El usuario se ha registrado correctamente, porfavor inicie sesion ', 'cerrar', { duration: 2000 });
-              this.router.navigate(['/login'])
+              this._snackBar.open('El usuario se ha registrado correctamente, porfavor inicie sesion ', 'cerrar', { verticalPosition: 'top', duration: 3000 });
+              setTimeout(() => {
+                this.router.navigate(['/login']);
+              }, 3000);
             })
           } else {
-            this._snackBar.open('El establecimiento se ha registrado correctamente, porfavor inicie sesion ', 'cerrar', { duration: 2000 });
-            this.router.navigate(['/login'])
+            this._snackBar.open('El establecimiento se ha registrado correctamente, porfavor inicie sesion ', 'cerrar', { verticalPosition: 'top', duration: 3000 });
+            setTimeout(() => {
+              this.router.navigate(['/login']);
+            }, 3000);
           }
-
         }else{
           this.message = res.message;
-        } 
+        }
 
       }, (err) => {
         if (err.status == 400) {
@@ -177,12 +185,13 @@ export class UsersComponent implements OnInit {
 
   saveimage() {
     this.userService.uploadPhoto(this.selectedFile.file, 10, 'Customer').subscribe((res: any) => {
-      
-    
+
+
     }, (err: any) => {
       console.log(err)
     })
   }
+
 
 }
 

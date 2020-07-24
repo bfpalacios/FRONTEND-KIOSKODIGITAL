@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-title>Registro Usuario</mat-card-title>
     <p class="error">{{message}}</p>
-    <form (submit)="saveUser()">
+    <form >
         <div class="row">
             <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="form-group">
@@ -75,6 +75,111 @@
                     </mat-error>
                 </div>
             </div>
+
+
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                  <mat-form-field class="form-full-width">
+                      <mat-label>Teléfono</mat-label>
+                      <input type="text" [(ngModel)]="user.phoneNumber" name="phoneNumber" matInput
+                          placeholder="Teléfono" required>
+                  </mat-form-field>
+                  <mat-error>
+                      {{ this.errors | errorMessage : 'phoneNumber'}}
+                  </mat-error>
+              </div>
+          </div>
+          <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                  <mat-form-field class="form-full-width">
+                      <mat-label>DNI</mat-label>
+                      <input type="text" [(ngModel)]="user.dni" name="dni" matInput placeholder="Teléfono" required>
+                  </mat-form-field>
+                  <mat-error>
+                      {{ this.errors | errorMessage : 'dni'}}
+                  </mat-error>
+              </div>
+          </div>
+          <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                  <mat-form-field class="form-full-width">
+                      <mat-label>Nombre Tienda</mat-label>
+                      <input type="text" [(ngModel)]="user.businessName" name="businessName" matInput
+                          placeholder="Nombre bodega" required>
+                  </mat-form-field>
+                  <mat-error>
+                      {{ this.errors | errorMessage : 'businessName'}}
+                  </mat-error>
+              </div>
+          </div>
+
+          <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                  <mat-form-field class="form-full-width">
+                      <mat-label>Delivery</mat-label>
+                      <input type="text" [(ngModel)]="user.delivery" name="delivery" matInput placeholder="Delivery"
+                          required>
+                  </mat-form-field>
+                  <mat-error>
+                      {{ this.errors | errorMessage : 'delivery'}}
+                  </mat-error>
+              </div>
+          </div>
+          <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                  <mat-form-field class="form-full-width">
+                      <mat-label>Tipo de Establecimiento</mat-label>
+                      <mat-select name="establishmentType" [(ngModel)]="user.establishmentType" required>
+                          <mat-option value="1">Bodega</mat-option>
+                          <mat-option value="2">Puesto de Mercado</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-error>
+                      {{ this.errors | errorMessage : 'establishmentType'}}
+                  </mat-error>
+              </div>
+          </div>
+          <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                  <mat-form-field class="form-full-width">
+                      <mat-label>Ruc</mat-label>
+                      <input type="text" [(ngModel)]="user.ruc" name="ruc" matInput placeholder="Ruc" required>
+                  </mat-form-field>
+                  <mat-error>
+                      {{ this.errors | errorMessage : 'ruc'}}
+                  </mat-error>
+              </div>
+          </div>
+          <div *ngIf="user.userType == 'P'" class="col-sm-6 col-md-6 col-lg-6">
+              <div class="form-group">
+                  <mat-form-field class="form-full-width">
+                      <mat-label>Horario de atención</mat-label>
+                      <mat-select name="operationSchedule" [(ngModel)]="user.operationSchedule" multiple required>
+                          <mat-option *ngFor="let item of operationScheduleDropDown"
+                              [value]="item.shippingScheduleId">{{item.range}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-error>
+                      {{ this.errors | errorMessage : 'operationSchedule'}}
+                  </mat-error>
+
+              </div>
+          </div>
+          <div *ngIf="user.userType == 'P'" class="col-sm-6 col-md-6 col-lg-6">
+              <div class="form-group">
+                  <mat-form-field class="form-full-width">
+                      <mat-label>Horario de Delivery</mat-label>
+                      <mat-select name="shippingSchedule" [(ngModel)]="user.shippingSchedule" multiple required>
+                          <mat-option *ngFor="let item of shippingScheduleDropDown" [value]="item.shippingScheduleId">
+                              {{item.range}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-error>
+                      {{ this.errors | errorMessage : 'shippingSchedule'}}
+                  </mat-error>
+              </div>
+          </div>
+
             <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="form-group">
                     <mat-form-field class="form-full-width">
@@ -118,14 +223,14 @@
             <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="form-group">
                     <mat-form-field class="form-full-width">
-                        <mat-label>direccion</mat-label>
+                        <mat-label>Direcci&oacute;n</mat-label>
                         <input matInput type="text" name="addres" [(ngModel)]="user.address" autocomplete="off"
-                            matTooltip="Info about the action" [disabled]=true>
+                            matTooltip="Info about the action">
                     </mat-form-field>
-                   
+
                 </div>
             </div>
-            <div class="col-sm-4 col-md-4 col-lg-4">
+            <!-- <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="form-group">
                     <mat-form-field class="form-full-width">
                         <mat-label>Latitud</mat-label>
@@ -142,7 +247,7 @@
                             [disabled]=true>
                     </mat-form-field>
                 </div>
-            </div>
+            </div> -->
 
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
@@ -154,128 +259,28 @@
 
                 </div>
             </div>
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="form-group">
-                    <mat-form-field class="form-full-width">
-                        <mat-label>Teléfono</mat-label>
-                        <input type="text" [(ngModel)]="user.phoneNumber" name="phoneNumber" matInput
-                            placeholder="Teléfono" required>
-                    </mat-form-field>
-                    <mat-error>
-                        {{ this.errors | errorMessage : 'phoneNumber'}}
-                    </mat-error>
-                </div>
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="form-group">
-                    <mat-form-field class="form-full-width">
-                        <mat-label>DNI</mat-label>
-                        <input type="text" [(ngModel)]="user.dni" name="dni" matInput placeholder="Teléfono" required>
-                    </mat-form-field>
-                    <mat-error>
-                        {{ this.errors | errorMessage : 'dni'}}
-                    </mat-error>
-                </div>
-            </div>
-            <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
-                <div class="form-group">
-                    <mat-form-field class="form-full-width">
-                        <mat-label>Nombre Tienda</mat-label>
-                        <input type="text" [(ngModel)]="user.businessName" name="businessName" matInput
-                            placeholder="Nombre bodega" required>
-                    </mat-form-field>
-                    <mat-error>
-                        {{ this.errors | errorMessage : 'businessName'}}
-                    </mat-error>
-                </div>
-            </div>
 
-            <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
-                <div class="form-group">
-                    <mat-form-field class="form-full-width">
-                        <mat-label>Delivery</mat-label>
-                        <input type="text" [(ngModel)]="user.delivery" name="delivery" matInput placeholder="Delivery"
-                            required>
-                    </mat-form-field>
-                    <mat-error>
-                        {{ this.errors | errorMessage : 'delivery'}}
-                    </mat-error>
-                </div>
-            </div>
-            <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
-                <div class="form-group">
-                    <mat-form-field class="form-full-width">
-                        <mat-label>Tipo de Establecimiento</mat-label>
-                        <mat-select name="establishmentType" [(ngModel)]="user.establishmentType" required>
-                            <mat-option value="1">Bodega</mat-option>
-                            <mat-option value="2">Puesto de Mercado</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-error>
-                        {{ this.errors | errorMessage : 'establishmentType'}}
-                    </mat-error>
-                </div>
-            </div>
-            <div *ngIf="user.userType == 'P'" class="col-sm-4 col-md-4 col-lg-4">
-                <div class="form-group">
-                    <mat-form-field class="form-full-width">
-                        <mat-label>Ruc</mat-label>
-                        <input type="text" [(ngModel)]="user.ruc" name="ruc" matInput placeholder="Ruc" required>
-                    </mat-form-field>
-                    <mat-error>
-                        {{ this.errors | errorMessage : 'ruc'}}
-                    </mat-error>
-                </div>
-            </div>
-            <div *ngIf="user.userType == 'P'" class="col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group">
-                    <mat-form-field class="form-full-width">
-                        <mat-label>Horario de atención</mat-label>
-                        <mat-select name="operationSchedule" [(ngModel)]="user.operationSchedule" multiple required>
-                            <mat-option *ngFor="let item of operationScheduleDropDown"
-                                [value]="item.shippingScheduleId">{{item.range}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-error>
-                        {{ this.errors | errorMessage : 'operationSchedule'}}
-                    </mat-error>
-
-                </div>
-            </div>
-            <div *ngIf="user.userType == 'P'" class="col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group">
-                    <mat-form-field class="form-full-width">
-                        <mat-label>Horario de Delivery</mat-label>
-                        <mat-select name="shippingSchedule" [(ngModel)]="user.shippingSchedule" multiple required>
-                            <mat-option *ngFor="let item of shippingScheduleDropDown" [value]="item.shippingScheduleId">
-                                {{item.range}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-error>
-                        {{ this.errors | errorMessage : 'shippingSchedule'}}
-                    </mat-error>
-                </div>
-            </div>
             <div class="col-sm-12 col-md-12 col-lg-12">
-                <div class="form-group">
-                    <label class="image-upoad-container btn btn-primary">
-                        <span>Seleccionar una foto</span>
-                        <input id="image" #imgageInput type="file" accept="image/*" (change)="procesfile(imgageInput)">
-                    </label>
-                    <div *ngIf="selectedFile" class="img-preview-container">
-                        <div class="img-preview" [ngStyle]="{'background-image':'url('+selectedFile.src +')'}">
+              <div class="form-group">
+                  <label class="image-upoad-container btn btn-primary">
+                      <span>Seleccionar una foto de perfil</span>
+                      <input id="image" #imgageInput type="file" accept="image/*" (change)="procesfile(imgageInput)">
+                  </label>
+                  <div *ngIf="selectedFile" class="img-preview-container">
+                      <div class="img-preview" [ngStyle]="{'background-image':'url('+selectedFile.src +')'}">
 
-                        </div>
-                    </div>
-                   
-                </div>
-            </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+
 
         </div>
 
         <mat-card-actions class="d-flex justify-content-end">
             <button mat-raised-button [routerLink]="['/login']">Cancelar</button>
-            <button mat-raised-button type="submit" color="primary">Guardar</button>
+            <button mat-raised-button type="submit" color="primary" (click)="saveUser()"  >Guardar</button>
         </mat-card-actions>
     </form>
 </mat-card>
